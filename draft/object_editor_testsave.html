@@ -1,14 +1,9 @@
 <!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en">
     <head>
         
-        
-        <title>
-            Lively 4 Our First Page
+        <title>Lively 4 Our First Page
         </title>
-        
-        
         <style type="text/css" media="screen">
-            
                 #baseurl {
                     width: 800px;
                 }
@@ -44,34 +39,18 @@
                 .__current-element {
                     outline: 2px dashed #BD0B0B;
                 }
-            
         </style>
         
-        
-        
-        <script src="https://code.jquery.com/jquery-2.1.4.js" type="text/javascript" charset="utf-8">
-        </script>
-        
-        
+        <script src="https://code.jquery.com/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
         
         <script>
-            
                 var lively4url =  "../" // or any abosolute path to lively4 ? Any idea for computeRoot() ? #JensLincke #OpenQuestion
             
-            
         </script>
         
-        
-        
-         BEGIN SYSTEM.JS: should go away, until then we use a "static" global source 
-        
-        
-        <script src="../src/external/system.src.js" type="text/javascript" charset="utf-8">
-        </script>
-        
-        
+        <!--  BEGIN SYSTEM.JS: should go away, until then we use a "static" global source  -->
+        <script src="../src/external/system.src.js" type="text/javascript" charset="utf-8"></script>
         <script>
-            
               System.paths['babel'] ='https://livelykernel.github.io/lively4-core/src/external/babel-browser.js'
               System.config({
                 transpiler: 'babel',
@@ -80,141 +59,76 @@
                     babel: 'https://livelykernel.github.io/lively4-core/src/external/babel-browser.js'
                 }
               });
-            
         </script>
-        
-        
-         END SYSTEM.JS
-        
-        
+        <!--  END SYSTEM.JS -->
         
     </head>
-    
-    
     <body>
-        
-        
-        <h1>
-            Lively 4 -- Bootstrapping Test Page
-            <script data-name="alertText" type="lively4script">
-                function alertText() {
+        <h1>Lively 4 -- Bootstrapping Test Page
+            <script data-name="alertText" type="lively4script">function alertText() {
                     alert(this.innerText);
                 }
             </script>
-            <script data-name="script3" type="lively4script">
-                function () { alert("asd4") }
+            <script data-name="script3" type="lively4script">function () { alert("asd4") }
             </script>
-            <script data-name="testU" type="lively4script">
-                function testU() {
-                  
+            <script data-name="test3" type="lively4script">function test3() {
+                  return 1
                 }
             </script>
         </h1>
         
-        
-        
         <p>
-            <input type="text" id="baseurl" value="https://github.lively4/repo/livelykernel/lively4-core/persistence-dummy/">
-            </input>
+            <input type="text" id="baseurl" value="https://github.lively4/repo/livelykernel/lively4-core/persistence-dummy/"></input>
         </p>
         
         
-        
-        
-         <button onclick="">reload service worker </button> 
-        
-        
+        <!--  <button onclick="">reload service worker </button>  -->
         
         <button onclick="githubAuth.challengeForAuth(Date.now(), function(token){
     console.log('We are authenticated with the Token: ' + token)
-})">
-            login
+})">login
         </button>
         
-        
-        
-        <button onclick="githubAuth.logout(); console.log('logged out of github')">
-            logout
+        <button onclick="githubAuth.logout(); console.log('logged out of github')">logout
         </button>
         
-        
-        
-        <button id="loadScriptsFromDOM" onclick="window.scriptManager.loadScriptsFromDOM()">
-            load lively4 scripts
+        <button id="loadScriptsFromDOM" onclick="window.scriptManager.loadScriptsFromDOM()">load lively4 scripts
         </button>
         
+        <input type="checkbox" id="persistToGithub"></input>persist changes to github
+        <input type="checkbox" id="persistOnInterval"></input>persist every x seconds only
         
+        <div id="console"></div>
         
-        <input type="checkbox" id="persistToGithub">
-        </input>
-        persist changes to github
-        
-        <input type="checkbox" id="persistOnInterval">
-        </input>
-        persist every x seconds only
-        
-        
-        <div id="console">
+        <p>
+            <input type="text" id="text-dummy" value="Änder mich!"></input>
+        </p>
+        <p></p>
+        <div contenteditable="true" id="text-dummy2">Änder mich!
         </div>
-        
-        
-        
-        <p>
-            <input type="text" id="text-dummy" value="Änder mich!">
-            </input>
-        </p>
-        
-        
-        <p>
-        </p>
-        <div contenteditable="true" id="text-dummy2">
-            Änder mich!
-        </div>
-        <p>
-        </p>
-        
-        
+        <p></p>
         
         <div id="object-inspector">
-            
                 
-            <input id="object-selector" value="" placeholder="Selector">
-            </input>
-            
+            <input id="object-selector" value="" placeholder="Selector"></input>
                 
             <select id="object-selector-list" size="10">
-                <option>
-                    [object HTMLHeadingElement]
+                <option>[object HTMLHeadingElement]
                 </option>
             </select>
-            
                 
-            <button id="object-inspect">
-                Inspect
+            <button id="object-inspect">Inspect
             </button>
-            
                 
-            <br>
-            </br>
-            
-            
+            <br></br>
         </div>
         
         
-        
-        
-        <br>
-        </br>
-        
-        
-        <button id="inject">
-            inject
+        <br></br>
+        <button id="inject">inject
         </button>
         
-        
-        
         <script>
-            
             
             
                 //// #TODO The ace editor tries to be very clever, so it cannot be loaded through "import" at the moment
@@ -232,21 +146,14 @@
                         ObjectEditor = module.ObjectEditor;
                     });
                 }).catch(function(err) { alert("load Lively4 failed")})
-            
         </script>
         
         
-        
-        
-        <script src="./object_editor.js" type="text/javascript" charset="utf-8">
-            function
+        <script src="./object_editor.js" type="text/javascript" charset="utf-8">function
         </script>
-        
-        
         
         <lively-window style="top: calc(50% - 208.883px); left: calc(50% - 206.391px);">
-            <lively-object-editor title="H1">
-            </lively-object-editor>
+            <lively-object-editor title="H1"></lively-object-editor>
         </lively-window>
     </body>
 </html>
